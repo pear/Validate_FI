@@ -8,7 +8,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Validate_FI": "./"
+            "Validate": "./"
         }
     },
     "description": "Validation class for Finland",
