@@ -83,7 +83,7 @@ class Validate_FI
      * @access      public
      * @return      bool    true if postal code is valid, false otherwise
      */
-    function postalCode($number, $strong=false)
+    static function postalCode($number, $strong=false)
     {
         return (bool) preg_match("/^(FI-)?[0-9]{5}$/", $number);
     }
@@ -117,7 +117,7 @@ class Validate_FI
      * @access      public
      * @return      bool    true if telephone number is valid, false otherwise
      */
-    function phoneNumber($number)
+    static function phoneNumber($number)
     {
         $number = str_replace(Array('(', ')', '-', '+', '.', ' '), '', $number);
         return (bool) preg_match("/^[0-9]{3,20}$/", $number);
@@ -156,7 +156,7 @@ class Validate_FI
      * @return      bool    true if license plate number is valid, false otherwise
      * @link        http://www.ake.fi/AKE/Rekisterointi/Suomen_rekisterikilvet/
      */
-    function carLicensePlate($number)
+    static function carLicensePlate($number)
     {
         // diplomat licence plate
         if (preg_match("/^CD-[1-9]{1}[0-9]{0,3}$/", $number)) {
@@ -205,7 +205,7 @@ class Validate_FI
      * @return      bool    true if license plate number is valid, false otherwise
      * @link        http://www.ake.fi/AKE/Rekisterointi/Suomen_rekisterikilvet/
      */
-    function bikeLicensePlate($number)
+    static function bikeLicensePlate($number)
     {
         $reg = "/^[A-ZÅÄÖ]{2,3}(\n)?[1-9]{1}[0-9]{0,2}$/";
         return (bool) preg_match($reg, $number);
@@ -259,7 +259,7 @@ class Validate_FI
      *                      in array if PIN is valid, false otherwise
      * @link        http://tarkistusmerkit.teppovuori.fi/tarkmerk.htm#hetu1
      */
-    function pin($number, $info = false)
+    static function pin($number, $info = false)
     {
         $regs           = '';
         $pin            = strtoupper($number);
@@ -317,7 +317,7 @@ class Validate_FI
      * @return      bool    true if FINUID is valid, false otherwise
      * @link        http://tarkistusmerkit.teppovuori.fi/tarkmerk.htm#satu
      */
-    function finuid($number)
+    static function finuid($number)
     {
         $regs           = '';
         $number         = strtoupper($number);
@@ -364,7 +364,7 @@ class Validate_FI
      * @return      bool    true if Business ID is valid, false otherwise
      * @link        http://tarkistusmerkit.teppovuori.fi/tarkmerk.htm#y-tunnus2
      */
-    function businessId($number)
+    static function businessId($number)
     {
         if (preg_match("/^[0-9]{6,7}-[0-9]{1}$/", $number)) {
             list($num, $control) = preg_split('[-]', $number);
@@ -422,7 +422,7 @@ class Validate_FI
      * @see         Validate_FI::businessId()
      * @link        http://tarkistusmerkit.teppovuori.fi/tarkmerk.htm#alv-numero
      */
-    function partyId($number)
+    static function partyId($number)
     {
         if (preg_match("/^[0-9]{12,17}$/", $number)) {
             $countryCode = substr($number, 0, 4);
@@ -469,7 +469,7 @@ class Validate_FI
      * @see         Validate_FI::businessId()
      * @link        http://tarkistusmerkit.teppovuori.fi/tarkmerk.htm#alv-numero
      */
-    function vatNumber($number)
+    static function vatNumber($number)
     {
         $countryCode = substr($number, 0, 2);
         $controlNum  = substr($number, -1, 1);
@@ -514,7 +514,7 @@ class Validate_FI
      * @link   http://tarkistusmerkit.teppovuori.fi/tarkmerk.htm#pankkitili
      * @link   http://www.pankkiyhdistys.fi/sisalto/upload/pdf/tilinrorakenne.pdf
      */
-    function bankAccount($number)
+    static function bankAccount($number)
     {
         if (preg_match("/^[0-9]{6}-[0-9]{2,8}$/", $number)) {
             // Bank groups are identified by the first digit
@@ -571,7 +571,7 @@ class Validate_FI
      * @return      bool    true if reference number is valid, false otherwise
      * @link        http://tarkistusmerkit.teppovuori.fi/tarkmerk.htm#viitenumero
      */
-    function refNum($number)
+    static function refNum($number)
     {
         // Remove non-numeric characters from $refnum. Only 4-20 digit number.
         $refnum = preg_replace('/[^0-9]+/', '', $number);
@@ -636,7 +636,7 @@ class Validate_FI
      * @access      public
      * @return      bool    true if credit card number is valid, false otherwise
      */
-    function creditCard($number)
+    static function creditCard($number)
     {
         // Remove non-numeric characters from $number 
         $number = preg_replace('/[^0-9]+/', '', $number);
@@ -658,7 +658,7 @@ class Validate_FI
      * @return      bool    true if number is valid, false otherwise
      * @link        http://en.wikipedia.org/wiki/Luhn_algorithm
      */
-    function _mod10($number)
+    static function _mod10($number)
     {
         // Double every second digit started at the right
         $doubledNumber = '';
