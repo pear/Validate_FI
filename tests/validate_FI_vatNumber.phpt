@@ -4,6 +4,7 @@ validate_FI_vatNumber.phpt: Unit tests for vatNumber method 'Validate/FI.php'
 <?php
 // $Id$
 // Validate test script
+require_once dirname(__FILE__) . '/do_not_ignore_any_error.php';
 $noYes = array('NO', 'YES');
 if (is_file(dirname(__FILE__) . '/../Validate/FI.php')) {
     require_once dirname(__FILE__) . '/../Validate/FI.php';
