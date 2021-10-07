@@ -16,6 +16,7 @@ echo "Test Validate_FI\n";
 echo "****************\n";
 
 $pins = array('010101-123N',    // OK
+              '0101010123N',    // NOK
               '010101-123J',    // NOK
               '310201-123U',    // NOK, date is not valid
               'ABC123',         // NOK
@@ -48,6 +49,7 @@ Test Validate_FI
 
 Test pin
 010101-123N: YES
+0101010123N: NO
 010101-123J: NO
 310201-123U: NO
 ABC123: NO
