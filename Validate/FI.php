@@ -130,7 +130,7 @@ class Validate_FI
      * 
      * Format: AAA-XXX, CD-XXXX or C-XXXXX. First or only number cannot be zero.
      * 
-     * AAA-XXX: AAA is 2-3 letters UPPERCASE A-Z + ÅÄÖ and XXX is 1-3 numbers.
+     * AAA-XXX: AAA is 2-3 letters UPPERCASE A-Z + Ã…Ã„Ã– and XXX is 1-3 numbers.
      * CD-XXXX: CD- and XXXX is 1-4 numbers (diplomat licence plate)
      * C-XXXXX: C- and XXXXX is 1-5 numbers (other tax-free diplomat licence plate)
      * 
@@ -167,7 +167,7 @@ class Validate_FI
             return true;
         }
         // regular licence plate
-        if (preg_match("/^[A-ZÅÄÖ]{2,3}-[1-9]{1}[0-9]{0,2}$/", $number)) {
+        if (preg_match("/^[A-ZÃ…Ã„Ã–]{2,3}-[1-9]{1}[0-9]{0,2}$/", $number)) {
             return true;
         }
         return false;
@@ -180,7 +180,7 @@ class Validate_FI
      * 
      * Format: AAAXXX. First or only number cannot be zero.
      * 
-     * Where AAA is 2-3 letters UPPERCASE A-Z + ÅÄÖ and XXX is 1-3 numbers.
+     * Where AAA is 2-3 letters UPPERCASE A-Z + Ã…Ã„Ã– and XXX is 1-3 numbers.
      * Letters and numbers are actually in separate lines.
      * 
      * <code>
@@ -207,7 +207,7 @@ class Validate_FI
      */
     static function bikeLicensePlate($number)
     {
-        $reg = "/^[A-ZÅÄÖ]{2,3}(\n)?[1-9]{1}[0-9]{0,2}$/";
+        $reg = "/^[A-ZÃ…Ã„Ã–]{2,3}(\n)?[1-9]{1}[0-9]{0,2}$/";
         return (bool) preg_match($reg, $number);
     }
     // }}}
@@ -267,7 +267,7 @@ class Validate_FI
                 "A", "B", "C", "D", "E", "F", "H", "J", "K", "L", 
                 "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y");
         static $century = array('+' => "18", '-' => "19", 'A' => "20");
-        $reg = "/^([0-9]{2})([0-9]{2})([0-9]{2})([+-A]{1})([0-9]{3})([0-9A-Z]{1})$/";
+        $reg = "/^([0-9]{2})([0-9]{2})([0-9]{2})([+\-A]{1})([0-9]{3})([0-9A-Z]{1})$/";
         if (preg_match($reg, $pin, $regs)) {
             // Validate date of birth. Must be a Gregorian date.
             if (checkdate($regs[2], $regs[1], $century[$regs[4]].$regs[3])) {
